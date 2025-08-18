@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
     <title>ALI'S Diet & Calories Tracker</title>
+    <!-- Google Fonts for modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,10 +15,16 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
             min-height: 100vh;
             color: #333;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body.dark {
+            background: linear-gradient(135deg, #0f2a3d 0%, #1a4a2a 100%);
+            color: #f0f0f0;
         }
 
         .container {
@@ -33,6 +41,11 @@
             text-align: center;
             margin-bottom: 30px;
             box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            position: relative;
+        }
+
+        body.dark .header {
+            background: rgba(0, 0, 0, 0.3);
         }
 
         .header h1 {
@@ -40,6 +53,22 @@
             font-size: 2.5em;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .motivation {
+            color: rgba(255,255,255,0.9);
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5em;
         }
 
         .stats-grid {
@@ -55,7 +84,11 @@
             border-radius: 15px;
             text-align: center;
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, background 0.3s;
+        }
+
+        body.dark .stat-card {
+            background: rgba(0, 0, 0, 0.5);
         }
 
         .stat-card:hover {
@@ -63,9 +96,13 @@
         }
 
         .stat-card h3 {
-            color: #667eea;
+            color: #11998e;
             margin-bottom: 10px;
             font-size: 1.1em;
+        }
+
+        body.dark .stat-card h3 {
+            color: #38ef7d;
         }
 
         .stat-value {
@@ -73,6 +110,10 @@
             font-weight: bold;
             color: #333;
             margin-bottom: 5px;
+        }
+
+        body.dark .stat-value {
+            color: #f0f0f0;
         }
 
         .stat-remaining {
@@ -98,12 +139,21 @@
             border-radius: 15px;
             padding: 25px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: background 0.3s;
+        }
+
+        body.dark .card {
+            background: rgba(0, 0, 0, 0.5);
         }
 
         .card h2 {
-            color: #667eea;
+            color: #11998e;
             margin-bottom: 20px;
             font-size: 1.5em;
+        }
+
+        body.dark .card h2 {
+            color: #38ef7d;
         }
 
         .search-container {
@@ -118,12 +168,18 @@
             border: 2px solid #e0e0e0;
             border-radius: 10px;
             font-size: 16px;
-            transition: border-color 0.3s ease;
+            transition: border-color 0.3s ease, background 0.3s;
+        }
+
+        body.dark .search-input {
+            background: #333;
+            color: #f0f0f0;
+            border-color: #555;
         }
 
         .search-input:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #11998e;
         }
 
         .btn {
@@ -137,13 +193,13 @@
         }
 
         .btn-primary {
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(45deg, #11998e, #38ef7d);
             color: white;
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 15px rgba(17, 153, 142, 0.4);
         }
 
         .btn-danger {
@@ -152,7 +208,7 @@
         }
 
         .btn-success {
-            background: linear-gradient(45deg, #00d2d3, #54a0ff);
+            background: linear-gradient(45deg, #11998e, #38ef7d);
             color: white;
         }
 
@@ -174,6 +230,11 @@
             transition: all 0.3s ease;
         }
 
+        body.dark .food-item {
+            background: #333;
+            border-color: #555;
+        }
+
         .food-item:hover {
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             transform: translateY(-2px);
@@ -184,9 +245,17 @@
             margin-bottom: 5px;
         }
 
+        body.dark .food-info h4 {
+            color: #f0f0f0;
+        }
+
         .food-info p {
             color: #666;
             font-size: 0.9em;
+        }
+
+        body.dark .food-info p {
+            color: #ccc;
         }
 
         .quantity-input {
@@ -195,6 +264,13 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             margin-right: 10px;
+            transition: background 0.3s;
+        }
+
+        body.dark .quantity-input {
+            background: #444;
+            color: #f0f0f0;
+            border-color: #666;
         }
 
         .today-meals {
@@ -210,7 +286,13 @@
             background: linear-gradient(45deg, #f8f9ff, #fff);
             border-radius: 10px;
             margin-bottom: 10px;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid #11998e;
+            transition: background 0.3s;
+        }
+
+        body.dark .meal-item {
+            background: linear-gradient(45deg, #2a2a2a, #333);
+            border-left-color: #38ef7d;
         }
 
         .meal-info h4 {
@@ -218,10 +300,18 @@
             margin-bottom: 5px;
         }
 
+        body.dark .meal-info h4 {
+            color: #f0f0f0;
+        }
+
         .meal-calories {
             font-weight: bold;
-            color: #667eea;
+            color: #11998e;
             font-size: 1.1em;
+        }
+
+        body.dark .meal-calories {
+            color: #38ef7d;
         }
 
         .progress-bar {
@@ -231,11 +321,16 @@
             border-radius: 10px;
             overflow: hidden;
             margin: 10px 0;
+            transition: background 0.3s;
+        }
+
+        body.dark .progress-bar {
+            background: #444;
         }
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(45deg, #00d2d3, #54a0ff);
+            background: linear-gradient(45deg, #11998e, #38ef7d);
             transition: width 0.5s ease;
             border-radius: 10px;
         }
@@ -246,6 +341,11 @@
             border-radius: 15px;
             padding: 5px;
             margin-bottom: 20px;
+            transition: background 0.3s;
+        }
+
+        body.dark .tabs {
+            background: rgba(0, 0, 0, 0.5);
         }
 
         .tab {
@@ -256,10 +356,15 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: bold;
+            color: #333;
+        }
+
+        body.dark .tab {
+            color: #f0f0f0;
         }
 
         .tab.active {
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(45deg, #11998e, #38ef7d);
             color: white;
         }
 
@@ -276,6 +381,11 @@
             padding: 25px;
             border-radius: 15px;
             margin-bottom: 20px;
+            transition: background 0.3s;
+        }
+
+        body.dark .goal-setting {
+            background: rgba(0, 0, 0, 0.5);
         }
 
         .form-group {
@@ -289,12 +399,37 @@
             color: #333;
         }
 
+        body.dark .form-group label {
+            color: #f0f0f0;
+        }
+
         .form-group input, .form-group select {
             width: 100%;
             padding: 10px;
             border: 2px solid #e0e0e0;
             border-radius: 8px;
             font-size: 16px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body.dark .form-group input, body.dark .form-group select {
+            background: #333;
+            color: #f0f0f0;
+            border-color: #555;
+        }
+
+        .training-days {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .training-days label {
+            font-size: 0.9em;
+            color: #333;
+        }
+
+        body.dark .training-days label {
+            color: #f0f0f0;
         }
 
         .weekly-chart {
@@ -302,6 +437,11 @@
             padding: 20px;
             border-radius: 10px;
             margin-top: 20px;
+            transition: background 0.3s;
+        }
+
+        body.dark .weekly-chart {
+            background: #333;
         }
 
         .chart-bar {
@@ -316,6 +456,10 @@
             color: #666;
         }
 
+        body.dark .chart-label {
+            color: #ccc;
+        }
+
         .chart-bar-bg {
             flex: 1;
             height: 25px;
@@ -323,11 +467,16 @@
             border-radius: 12px;
             overflow: hidden;
             margin: 0 10px;
+            transition: background 0.3s;
+        }
+
+        body.dark .chart-bar-bg {
+            background: #444;
         }
 
         .chart-bar-fill {
             height: 100%;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(45deg, #11998e, #38ef7d);
             border-radius: 12px;
             transition: width 0.5s ease;
         }
@@ -337,6 +486,15 @@
             text-align: right;
             font-weight: bold;
             color: #333;
+        }
+
+        body.dark .chart-value {
+            color: #f0f0f0;
+        }
+
+        canvas {
+            max-width: 100%;
+            height: auto;
         }
 
         .notification {
@@ -352,7 +510,7 @@
         }
 
         .notification.success {
-            background: linear-gradient(45deg, #00d2d3, #54a0ff);
+            background: linear-gradient(45deg, #11998e, #38ef7d);
         }
 
         .notification.error {
@@ -368,6 +526,60 @@
             margin-top: 20px;
             width: 100%;
         }
+
+        .import-btn {
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        #importFile {
+            display: none;
+        }
+
+        .tasks-section {
+            margin-top: 30px;
+        }
+
+        .task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        body.dark .task-item {
+            background: #333;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        body.dark .footer {
+            color: #ccc;
+        }
+
+        /* Additional responsive adjustments */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .stat-card {
+                padding: 15px;
+            }
+
+            .btn {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -375,6 +587,8 @@
         <div class="header">
             <h1>💪 ALI'S Diet & Calories Tracker🤸</h1>
             <p style="color: rgba(255,255,255,0.9); font-size: 1.1em;">Your Smart Nutrition Companion</p>
+            <p class="motivation" id="dailyMotivation"></p>
+            <button class="theme-toggle" id="themeToggle">🌙</button>
         </div>
 
         <div class="stats-grid">
@@ -387,9 +601,42 @@
                 <div class="stat-remaining" id="remainingCalories">Goal: 2000</div>
             </div>
             <div class="stat-card">
-                <h3>Weekly Average</h3>
+                <h3>Protein (g)</h3>
+                <div class="stat-value" id="todayProtein">0</div>
+                <div class="stat-remaining" id="proteinGoal">Goal: 100g</div>
+            </div>
+            <div class="stat-card">
+                <h3>Carbs (g)</h3>
+                <div class="stat-value" id="todayCarbs">0</div>
+                <div class="stat-remaining" id="carbsGoal">Goal: 250g</div>
+            </div>
+            <div class="stat-card">
+                <h3>Fat (g)</h3>
+                <div class="stat-value" id="todayFat">0</div>
+                <div class="stat-remaining" id="fatGoal">Goal: 70g</div>
+            </div>
+            <div class="stat-card">
+                <h3>Water Intake</h3>
+                <div class="stat-value" id="todayWater">0 ml</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="waterProgress"></div>
+                </div>
+                <div class="stat-remaining" id="remainingWater">Goal: 3000 ml</div>
+            </div>
+            <div class="stat-card">
+                <h3>Current Weight</h3>
+                <div class="stat-value" id="todayWeight">-</div>
+                <p style="color: #666;">kg</p>
+            </div>
+            <div class="stat-card">
+                <h3>Weekly Average Cal</h3>
                 <div class="stat-value" id="weeklyAverage">0</div>
                 <p style="color: #666;">Calories per day</p>
+            </div>
+            <div class="stat-card">
+                <h3>Weekly Avg Weight</h3>
+                <div class="stat-value" id="weeklyWeightAvg">-</div>
+                <p style="color: #666;">kg</p>
             </div>
             <div class="stat-card">
                 <h3>Foods Logged</h3>
@@ -407,6 +654,7 @@
             <div class="tab active" onclick="switchTab('tracker')">🍽️ Food Tracker</div>
             <div class="tab" onclick="switchTab('goals')">🎯 Goals & Settings</div>
             <div class="tab" onclick="switchTab('reports')">📊 Reports & History</div>
+            <div class="tab" onclick="switchTab('routine')">📅 Daily Routine</div>
         </div>
 
         <div class="tab-content active" id="tracker">
@@ -418,6 +666,18 @@
                         <button class="btn btn-primary" onclick="searchFood()">Search</button>
                     </div>
                     <div class="food-results" id="foodResults"></div>
+
+                    <h2>💧 Log Water</h2>
+                    <div class="search-container">
+                        <input type="number" id="waterAmount" class="search-input" placeholder="Enter ml or glasses (1 glass = 250ml)" min="1">
+                        <button class="btn btn-primary" onclick="addWater()">Add Water</button>
+                    </div>
+
+                    <h2>⚖️ Log Weight</h2>
+                    <div class="search-container">
+                        <input type="number" id="weightInput" class="search-input" placeholder="Enter weight in kg" step="0.1" min="0">
+                        <button class="btn btn-primary" onclick="logWeight()">Log Weight</button>
+                    </div>
                 </div>
 
                 <div class="card">
@@ -437,8 +697,32 @@
             <div class="goal-setting">
                 <h2>🎯 Set Your Goals</h2>
                 <div class="form-group">
-                    <label>Daily Calorie Goal:</label>
-                    <input type="number" id="calorieGoal" value="2000" min="1000" max="5000">
+                    <label>Light Day Calorie Goal:</label>
+                    <input type="number" id="lightCalorieGoal" value="2000" min="1000" max="5000">
+                </div>
+                <div class="form-group">
+                    <label>Heavy Day Calorie Adjustment (+):</label>
+                    <input type="number" id="heavyCalorieAdjust" value="300" min="0" max="1000">
+                </div>
+                <div class="form-group">
+                    <label>Light Day Protein Goal (g):</label>
+                    <input type="number" id="lightProteinGoal" value="100" min="50" max="300">
+                </div>
+                <div class="form-group">
+                    <label>Heavy Day Protein Goal (g):</label>
+                    <input type="number" id="heavyProteinGoal" value="130" min="50" max="300">
+                </div>
+                <div class="form-group">
+                    <label>Carbs Goal (g):</label>
+                    <input type="number" id="carbsGoalInput" value="250" min="100" max="500">
+                </div>
+                <div class="form-group">
+                    <label>Fat Goal (g):</label>
+                    <input type="number" id="fatGoalInput" value="70" min="30" max="150">
+                </div>
+                <div class="form-group">
+                    <label>Water Goal (ml):</label>
+                    <input type="number" id="waterGoal" value="3000" min="1000" max="5000" step="100">
                 </div>
                 <div class="form-group">
                     <label>Activity Level:</label>
@@ -458,117 +742,202 @@
                         <option value="gain">Gain Weight</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label>Training Days:</label>
+                    <div class="training-days">
+                        <label><input type="checkbox" id="mon"> Mon</label>
+                        <label><input type="checkbox" id="tue"> Tue</label>
+                        <label><input type="checkbox" id="wed"> Wed</label>
+                        <label><input type="checkbox" id="thu"> Thu</label>
+                        <label><input type="checkbox" id="fri"> Fri</label>
+                        <label><input type="checkbox" id="sat"> Sat</label>
+                        <label><input type="checkbox" id="sun"> Sun</label>
+                    </div>
+                </div>
                 <button class="btn btn-success" onclick="saveGoals()" style="width: 100%;">Save Goals</button>
             </div>
         </div>
 
         <div class="tab-content" id="reports">
             <div class="card">
-                <h2>📊 Weekly Report</h2>
-                <div class="weekly-chart" id="weeklyChart">
-                    <!-- Chart will be populated by JavaScript -->
-                </div>
+                <h2>📊 Weekly Calorie Report</h2>
+                <div class="weekly-chart" id="weeklyCalorieChart"></div>
+                <h2>📊 Weekly Weight Progress</h2>
+                <canvas id="weightLineChart" width="400" height="200"></canvas>
                 <button class="btn btn-primary export-btn" onclick="exportData()">📁 Export Data</button>
+                <label for="importFile" class="btn btn-primary import-btn" style="cursor: pointer;">📂 Import Data</label>
+                <input type="file" id="importFile" accept=".json" onchange="importData(event)">
+            </div>
+        </div>
+
+        <div class="tab-content" id="routine">
+            <div class="card">
+                <h2>📅 Daily Routine Tasks</h2>
+                <div class="search-container">
+                    <input type="text" id="taskInput" class="search-input" placeholder="Enter new task (e.g., Gym workout)">
+                    <button class="btn btn-primary" onclick="addTask()">Add Task</button>
+                </div>
+                <div id="taskList"></div>
             </div>
         </div>
     </div>
 
+    <footer class="footer">
+        <p>Motivate yourself: "Consistency is key to success!"</p>
+    </footer>
+
     <script>
-   // Food database with Pakistani and international foods
-const foodDatabase = [
-     // Fruits
-    {name: "Banana", calories: 89, unit: "1 medium (118g)"},
-    {name: "Apple", calories: 52, unit: "1 medium (182g)"},
-    {name: "Mango", calories: 60, unit: "100g"},
-    {name: "Orange", calories: 47, unit: "1 medium"},
-    {name: "Dates (Khajoor)", calories: 282, unit: "100g (~4 dates)"},
-    {name: "Grapes", calories: 69, unit: "100g"},
-    {name: "Pomegranate", calories: 83, unit: "100g"},
-    {name: "Guava", calories: 68, unit: "100g"},
-    {name: "Papaya", calories: 43, unit: "100g"},
+        // Motivational quotes array
+        const motivations = [
+            "Every step counts towards a healthier you!",
+            "Stay consistent, results will follow.",
+            "Fuel your body with good nutrition.",
+            "You're stronger than you think.",
+            "Progress, not perfection.",
+            "Eat well, live well.",
+            "Your body deserves the best.",
+            "One day at a time.",
+            "Believe in yourself.",
+            "Health is wealth."
+        ];
 
-    // Dry Fruits & Nuts
-    {name: "Almonds", calories: 579, unit: "100g"},
-    {name: "Cashews", calories: 553, unit: "100g"},
-    {name: "Walnuts", calories: 654, unit: "100g"},
-    {name: "Pistachios", calories: 562, unit: "100g"},
-    {name: "Raisins", calories: 299, unit: "100g"},
-    {name: "Peanuts", calories: 567, unit: "100g"},
-    {name: "Peanut Butter", calories: 588, unit: "100g (2 tbsp ~188 cal)"},
+        // Expanded food database with more common foods
+        const foodDatabase = [
+            // Fruits
+            {name: "Banana", calories: 89, protein: 1.1, carbs: 22.8, fat: 0.3, unit: "100g"},
+            {name: "Apple", calories: 52, protein: 0.3, carbs: 13.8, fat: 0.2, unit: "100g"},
+            {name: "Mango", calories: 60, protein: 0.8, carbs: 15, fat: 0.4, unit: "100g"},
+            {name: "Orange", calories: 47, protein: 0.9, carbs: 11.8, fat: 0.1, unit: "100g"},
+            {name: "Dates (Khajoor)", calories: 282, protein: 2.5, carbs: 75, fat: 0.4, unit: "100g"},
+            {name: "Grapes", calories: 69, protein: 0.7, carbs: 18, fat: 0.2, unit: "100g"},
+            {name: "Pomegranate", calories: 83, protein: 1.7, carbs: 18.7, fat: 1.2, unit: "100g"},
+            {name: "Guava", calories: 68, protein: 2.5, carbs: 14.3, fat: 1, unit: "100g"},
+            {name: "Papaya", calories: 43, protein: 0.5, carbs: 10.8, fat: 0.3, unit: "100g"},
 
-    // Dairy
-    {name: "Milk (Full Cream)", calories: 61, unit: "100ml"},
-    {name: "Milk (Low Fat)", calories: 42, unit: "100ml"},
-    {name: "Yogurt (Dahi)", calories: 59, unit: "100g"},
-    {name: "Lassi (Sweet)", calories: 150, unit: "1 glass"},
-    {name: "Lassi (Salted)", calories: 110, unit: "1 glass"},
-    {name: "Paneer (Cottage Cheese)", calories: 265, unit: "100g"},
-    {name: "Butter", calories: 717, unit: "100g (1 tbsp ~102 cal)"},
-    {name: "Cheddar Cheese", calories: 402, unit: "100g"},
+            // Nuts and Butters
+            {name: "Peanut Butter", calories: 588, protein: 22.2, carbs: 20, fat: 50, unit: "100g"},
+            {name: "Almonds", calories: 579, protein: 21.2, carbs: 21.6, fat: 49.9, unit: "100g"},
+            {name: "Cashews", calories: 553, protein: 18.2, carbs: 30.2, fat: 43.8, unit: "100g"},
+            {name: "Walnuts", calories: 654, protein: 15.2, carbs: 13.7, fat: 65.2, unit: "100g"},
+            {name: "Pistachios", calories: 562, protein: 20.2, carbs: 27.2, fat: 45.3, unit: "100g"},
+            {name: "Raisins", calories: 299, protein: 3.1, carbs: 79.2, fat: 0.5, unit: "100g"},
+            {name: "Peanuts", calories: 567, protein: 25.8, carbs: 16.1, fat: 49.2, unit: "100g"},
 
-    // Drinks
-    {name: "Chai (Tea with Milk)", calories: 40, unit: "1 cup"},
-    {name: "Green Tea", calories: 2, unit: "1 cup"},
-    {name: "Black Coffee", calories: 2, unit: "1 cup"},
-    {name: "Soft Drink (Cola)", calories: 140, unit: "330ml can"},
-    {name: "Fresh Juice (Orange)", calories: 45, unit: "100ml"},
+            // Proteins
+            {name: "Chicken Breast", calories: 165, protein: 31, carbs: 0, fat: 3.6, unit: "100g"},
+            {name: "Salmon", calories: 208, protein: 20, carbs: 0, fat: 13, unit: "100g"},
+            {name: "Egg", calories: 155, protein: 13, carbs: 1.1, fat: 11, unit: "100g"},
+            {name: "Tuna", calories: 132, protein: 29, carbs: 0, fat: 1, unit: "100g"},
 
-    // Staple Foods & Breads
-    {name: "Roti (Wheat)", calories: 71, unit: "1 medium roti"},
-    {name: "Chapati", calories: 104, unit: "1 piece"},
-    {name: "Paratha", calories: 200, unit: "1 piece"},
-    {name: "Naan", calories: 262, unit: "1 piece"},
-    {name: "White Rice", calories: 130, unit: "100g cooked"},
-    {name: "Basmati Rice", calories: 121, unit: "100g cooked"},
-    {name: "Brown Rice", calories: 123, unit: "100g cooked"},
-    {name: "Bread (White Slice)", calories: 70, unit: "1 slice"},
-    {name: "Bread (Brown Slice)", calories: 80, unit: "1 slice"},
-    {name: "Multigrain Bread", calories: 90, unit: "1 slice"},
-    {name: "Jam", calories: 250, unit: "100g (1 tbsp ~50 cal)"},
+            // Grains
+            {name: "Rice (White)", calories: 130, protein: 2.7, carbs: 28.2, fat: 0.3, unit: "100g cooked"},
+            {name: "Oats", calories: 389, protein: 16.9, carbs: 66.3, fat: 6.9, unit: "100g"},
+            {name: "Brown Rice", calories: 123, protein: 2.7, carbs: 25.6, fat: 1, unit: "100g cooked"},
+            {name: "Quinoa", calories: 120, protein: 4.1, carbs: 21.3, fat: 1.9, unit: "100g cooked"},
 
-    // Pakistani Dishes
-    {name: "Dal (Lentils)", calories: 116, unit: "100g cooked"},
-    {name: "Aloo Gobi", calories: 90, unit: "100g"},
-    {name: "Chicken Karahi", calories: 210, unit: "100g"},
-    {name: "Mutton Curry", calories: 250, unit: "100g"},
-    {name: "Beef Curry", calories: 260, unit: "100g"},
-    {name: "Fish Curry", calories: 130, unit: "100g"},
-    {name: "Biryani", calories: 200, unit: "100g"},
-    {name: "Chicken Pulao", calories: 170, unit: "100g"},
-    {name: "Haleem", calories: 150, unit: "100g"},
-    {name: "Nihari", calories: 260, unit: "100g"},
-    {name: "Keema (Mince)", calories: 250, unit: "100g"},
-    {name: "Kofta Curry", calories: 220, unit: "100g"},
-    {name: "Chonay ka Salan (Chickpea Curry)", calories: 164, unit: "100g cooked"},
+            // Dairy and others from original
+            {name: "Milk (Full Cream)", calories: 61, protein: 3.2, carbs: 4.8, fat: 3.3, unit: "100ml"},
+            {name: "Milk (Low Fat)", calories: 42, protein: 3.4, carbs: 5, fat: 1, unit: "100ml"},
+            {name: "Yogurt (Dahi)", calories: 59, protein: 3.5, carbs: 4.7, fat: 3.3, unit: "100g"},
+            {name: "Lassi (Sweet)", calories: 150, protein: 5, carbs: 25, fat: 4, unit: "1 glass"},
+            {name: "Lassi (Salted)", calories: 110, protein: 5, carbs: 10, fat: 4, unit: "1 glass"},
+            {name: "Paneer (Cottage Cheese)", calories: 265, protein: 18.3, carbs: 1.2, fat: 20.8, unit: "100g"},
+            {name: "Butter", calories: 717, protein: 0.9, carbs: 0.1, fat: 81.1, unit: "100g"},
+            {name: "Cheddar Cheese", calories: 402, protein: 24.9, carbs: 1.3, fat: 33.1, unit: "100g"},
 
+            // Drinks
+            {name: "Chai (Tea with Milk)", calories: 40, protein: 1, carbs: 5, fat: 2, unit: "1 cup"},
+            {name: "Green Tea", calories: 2, protein: 0, carbs: 0.5, fat: 0, unit: "1 cup"},
+            {name: "Black Coffee", calories: 2, protein: 0.3, carbs: 0, fat: 0, unit: "1 cup"},
+            {name: "Soft Drink (Cola)", calories: 140, protein: 0, carbs: 36, fat: 0, unit: "330ml can"},
+            {name: "Fresh Juice (Orange)", calories: 45, protein: 0.7, carbs: 10.4, fat: 0.2, unit: "100ml"},
 
-    // Snacks & Fast Food
-    {name: "Samosa", calories: 252, unit: "1 piece"},
-    {name: "Pakora", calories: 45, unit: "1 piece"},
-    {name: "Karela Pakora", calories: 60, unit: "1 piece"},
-    {name: "Bread Pakora", calories: 150, unit: "1 piece"},
-    {name: "Kebab", calories: 180, unit: "1 piece"},
-    {name: "Shami Kebab", calories: 120, unit: "1 piece"},
-    {name: "Seekh Kebab", calories: 150, unit: "1 piece"},
-    {name: "Pizza Slice", calories: 285, unit: "1 slice"},
-    {name: "Burger", calories: 540, unit: "1 medium"},
-    {name: "French Fries", calories: 312, unit: "100g"},
-    {name: "Pasta", calories: 131, unit: "100g cooked"}
-];
+            // Staple Foods & Breads
+            {name: "Roti (Wheat)", calories: 71, protein: 2.6, carbs: 15.7, fat: 0.4, unit: "1 medium roti"},
+            {name: "Chapati", calories: 104, protein: 3.7, carbs: 17.8, fat: 3.7, unit: "1 piece"},
+            {name: "Paratha", calories: 200, protein: 4, carbs: 25, fat: 10, unit: "1 piece"},
+            {name: "Naan", calories: 262, protein: 9, carbs: 45, fat: 5, unit: "1 piece"},
+            {name: "Basmati Rice", calories: 121, protein: 3.5, carbs: 25.6, fat: 0.4, unit: "100g cooked"},
+            {name: "Bread (White Slice)", calories: 70, protein: 2, carbs: 13, fat: 1, unit: "1 slice"},
+            {name: "Bread (Brown Slice)", calories: 80, protein: 3, carbs: 15, fat: 1, unit: "1 slice"},
+            {name: "Multigrain Bread", calories: 90, protein: 4, carbs: 15, fat: 2, unit: "1 slice"},
+            {name: "Jam", calories: 250, protein: 0.4, carbs: 66, fat: 0.1, unit: "100g"},
 
+            // Pakistani Dishes
+            {name: "Dal (Lentils)", calories: 116, protein: 7.5, carbs: 20, fat: 0.8, unit: "100g cooked"},
+            {name: "Aloo Gobi", calories: 90, protein: 2, carbs: 12, fat: 4, unit: "100g"},
+            {name: "Chicken Karahi", calories: 210, protein: 20, carbs: 5, fat: 12, unit: "100g"},
+            {name: "Mutton Curry", calories: 250, protein: 18, carbs: 6, fat: 18, unit: "100g"},
+            {name: "Beef Curry", calories: 260, protein: 22, carbs: 5, fat: 18, unit: "100g"},
+            {name: "Fish Curry", calories: 130, protein: 15, carbs: 5, fat: 6, unit: "100g"},
+            {name: "Biryani", calories: 200, protein: 8, carbs: 30, fat: 6, unit: "100g"},
+            {name: "Chicken Pulao", calories: 170, protein: 10, carbs: 25, fat: 4, unit: "100g"},
+            {name: "Haleem", calories: 150, protein: 8, carbs: 20, fat: 5, unit: "100g"},
+            {name: "Nihari", calories: 260, protein: 15, carbs: 10, fat: 18, unit: "100g"},
+            {name: "Keema (Mince)", calories: 250, protein: 20, carbs: 5, fat: 18, unit: "100g"},
+            {name: "Kofta Curry", calories: 220, protein: 15, carbs: 10, fat: 14, unit: "100g"},
+            {name: "Chonay ka Salan (Chickpea Curry)", calories: 164, protein: 8, carbs: 25, fat: 4, unit: "100g cooked"},
 
+            // Snacks & Fast Food
+            {name: "Samosa", calories: 252, protein: 4, carbs: 30, fat: 12, unit: "1 piece"},
+            {name: "Pakora", calories: 45, protein: 1, carbs: 5, fat: 2.5, unit: "1 piece"},
+            {name: "Karela Pakora", calories: 60, protein: 1.5, carbs: 7, fat: 3, unit: "1 piece"},
+            {name: "Bread Pakora", calories: 150, protein: 4, carbs: 18, fat: 8, unit: "1 piece"},
+            {name: "Kebab", calories: 180, protein: 12, carbs: 5, fat: 12, unit: "1 piece"},
+            {name: "Shami Kebab", calories: 120, protein: 8, carbs: 10, fat: 6, unit: "1 piece"},
+            {name: "Seekh Kebab", calories: 150, protein: 10, carbs: 5, fat: 10, unit: "1 piece"},
+            {name: "Pizza Slice", calories: 285, protein: 12, carbs: 35, fat: 10, unit: "1 slice"},
+            {name: "Burger", calories: 540, protein: 25, carbs: 40, fat: 30, unit: "1 medium"},
+            {name: "French Fries", calories: 312, protein: 3.4, carbs: 41.4, fat: 14.7, unit: "100g"},
+            {name: "Pasta", calories: 131, protein: 5.2, carbs: 25, fat: 1.1, unit: "100g cooked"}
+        ];
 
         let dailyData = JSON.parse(localStorage.getItem('aliDietTracker') || '{}');
-        let userGoals = JSON.parse(localStorage.getItem('aliDietGoals') || '{"calories": 2000, "activity": "moderate", "weight": "maintain"}');
+        let userGoals = JSON.parse(localStorage.getItem('aliDietGoals') || `{
+            "lightCalories": 2000,
+            "heavyCalorieAdjust": 300,
+            "lightProtein": 100,
+            "heavyProtein": 130,
+            "carbs": 250,
+            "fat": 70,
+            "water": 3000,
+            "activity": "moderate",
+            "weight": "maintain",
+            "trainingDays": []
+        }`);
+        let tasks = JSON.parse(localStorage.getItem('aliTasks') || '[]');
         let todayKey = new Date().toISOString().split('T')[0];
+        let today = new Date();
+        let dayOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'][today.getDay()];
 
         if (!dailyData[todayKey]) {
-            dailyData[todayKey] = {meals: [], totalCalories: 0};
+            dailyData[todayKey] = {
+                meals: [],
+                water: 0,
+                weight: null,
+                totalCalories: 0,
+                totalProtein: 0,
+                totalCarbs: 0,
+                totalFat: 0
+            };
         }
 
         function saveData() {
             localStorage.setItem('aliDietTracker', JSON.stringify(dailyData));
             localStorage.setItem('aliDietGoals', JSON.stringify(userGoals));
+            localStorage.setItem('aliTasks', JSON.stringify(tasks));
+        }
+
+        function getCurrentGoals() {
+            const isTrainingDay = userGoals.trainingDays.includes(dayOfWeek);
+            return {
+                calories: isTrainingDay ? userGoals.lightCalories + userGoals.heavyCalorieAdjust : userGoals.lightCalories,
+                protein: isTrainingDay ? userGoals.heavyProtein : userGoals.lightProtein,
+                carbs: userGoals.carbs,
+                fat: userGoals.fat,
+                water: userGoals.water,
+                isTraining: isTrainingDay
+            };
         }
 
         function searchFood() {
@@ -580,9 +949,7 @@ const foodDatabase = [
                 return;
             }
 
-            const filteredFoods = foodDatabase.filter(food => 
-                food.name.toLowerCase().includes(query)
-            );
+            const filteredFoods = foodDatabase.filter(food => food.name.toLowerCase().includes(query));
 
             if (filteredFoods.length === 0) {
                 results.innerHTML = '<div style="text-align: center; color: #666; padding: 20px;">No foods found. Try a different search term.</div>';
@@ -593,30 +960,39 @@ const foodDatabase = [
                 <div class="food-item">
                     <div class="food-info">
                         <h4>${food.name}</h4>
-                        <p>${food.calories} cal per ${food.unit}</p>
+                        <p>${food.calories} cal, P: ${food.protein}g, C: ${food.carbs}g, F: ${food.fat}g per ${food.unit}</p>
                     </div>
                     <div>
-                        <input type="number" class="quantity-input" min="0.1" step="0.1" value="1" id="qty-${food.name}">
-                        <button class="btn btn-success" onclick="addFood('${food.name}', ${food.calories}, '${food.unit}')">Add</button>
+                        <input type="number" class="quantity-input" min="0.1" step="0.1" value="1" id="qty-${food.name.replace(/\s/g, '-')}">
+                        <button class="btn btn-success" onclick="addFood('${food.name}', ${food.calories}, ${food.protein}, ${food.carbs}, ${food.fat}, '${food.unit}')">Add</button>
                     </div>
                 </div>
             `).join('');
         }
 
-        function addFood(name, caloriesPerUnit, unit) {
-            const quantity = parseFloat(document.getElementById(`qty-${name}`).value) || 1;
+        function addFood(name, caloriesPerUnit, proteinPerUnit, carbsPerUnit, fatPerUnit, unit) {
+            const quantity = parseFloat(document.getElementById(`qty-${name.replace(/\s/g, '-')}`).value) || 1;
             const totalCalories = Math.round(caloriesPerUnit * quantity);
+            const totalProtein = (proteinPerUnit * quantity).toFixed(1);
+            const totalCarbs = (carbsPerUnit * quantity).toFixed(1);
+            const totalFat = (fatPerUnit * quantity).toFixed(1);
             
             const meal = {
                 name: name,
                 quantity: quantity,
                 unit: unit,
                 calories: totalCalories,
+                protein: totalProtein,
+                carbs: totalCarbs,
+                fat: totalFat,
                 time: new Date().toLocaleTimeString()
             };
 
             dailyData[todayKey].meals.push(meal);
             dailyData[todayKey].totalCalories += totalCalories;
+            dailyData[todayKey].totalProtein += parseFloat(totalProtein);
+            dailyData[todayKey].totalCarbs += parseFloat(totalCarbs);
+            dailyData[todayKey].totalFat += parseFloat(totalFat);
             
             saveData();
             updateDisplay();
@@ -626,6 +1002,9 @@ const foodDatabase = [
         function removeFood(index) {
             const removedMeal = dailyData[todayKey].meals[index];
             dailyData[todayKey].totalCalories -= removedMeal.calories;
+            dailyData[todayKey].totalProtein -= parseFloat(removedMeal.protein);
+            dailyData[todayKey].totalCarbs -= parseFloat(removedMeal.carbs);
+            dailyData[todayKey].totalFat -= parseFloat(removedMeal.fat);
             dailyData[todayKey].meals.splice(index, 1);
             
             saveData();
@@ -633,40 +1012,84 @@ const foodDatabase = [
             showNotification(`Removed ${removedMeal.name}`, 'success');
         }
 
+        function addWater() {
+            let amount = parseInt(document.getElementById('waterAmount').value) || 0;
+            if (amount <= 0) return;
+            if (amount < 50) amount *= 250; // Assume glasses if small number
+            dailyData[todayKey].water += amount;
+            saveData();
+            updateDisplay();
+            showNotification(`Added ${amount} ml of water`, 'success');
+            document.getElementById('waterAmount').value = '';
+        }
+
+        function logWeight() {
+            const weight = parseFloat(document.getElementById('weightInput').value);
+            if (isNaN(weight) || weight <= 0) return;
+            dailyData[todayKey].weight = weight;
+            saveData();
+            updateDisplay();
+            showNotification(`Logged weight: ${weight} kg`, 'success');
+            document.getElementById('weightInput').value = '';
+        }
+
         function updateDisplay() {
             updateTodayStats();
             updateMealsList();
-            updateWeeklyChart();
+            updateWeeklyCharts();
+            updateTasksList();
         }
 
         function updateTodayStats() {
-            const todayCalories = dailyData[todayKey].totalCalories;
-            const goal = userGoals.calories;
-            const remaining = goal - todayCalories;
-            const percentage = Math.min((todayCalories / goal) * 100, 100);
+            const currentGoals = getCurrentGoals();
+            const todayCalories = dailyData[todayKey].totalCalories || 0;
+            const remainingCal = currentGoals.calories - todayCalories;
+            const calPercentage = Math.min((todayCalories / currentGoals.calories) * 100, 100);
 
             document.getElementById('todayCalories').textContent = todayCalories;
             document.getElementById('remainingCalories').textContent = 
-                remaining > 0 ? `${remaining} cal remaining` : `${Math.abs(remaining)} cal over goal`;
-            document.getElementById('remainingCalories').style.color = remaining > 0 ? '#28a745' : '#dc3545';
-            
-            document.getElementById('calorieProgress').style.width = percentage + '%';
+                remainingCal > 0 ? `${remainingCal} cal remaining` : `${Math.abs(remainingCal)} cal over goal`;
+            document.getElementById('remainingCalories').style.color = remainingCal > 0 ? '#28a745' : '#dc3545';
+            document.getElementById('calorieProgress').style.width = calPercentage + '%';
+
+            document.getElementById('todayProtein').textContent = (dailyData[todayKey].totalProtein || 0).toFixed(1);
+            document.getElementById('proteinGoal').textContent = `Goal: ${currentGoals.protein}g`;
+
+            document.getElementById('todayCarbs').textContent = (dailyData[todayKey].totalCarbs || 0).toFixed(1);
+            document.getElementById('carbsGoal').textContent = `Goal: ${currentGoals.carbs}g`;
+
+            document.getElementById('todayFat').textContent = (dailyData[todayKey].totalFat || 0).toFixed(1);
+            document.getElementById('fatGoal').textContent = `Goal: ${currentGoals.fat}g`;
+
+            const todayWater = dailyData[todayKey].water || 0;
+            const remainingWater = currentGoals.water - todayWater;
+            const waterPercentage = Math.min((todayWater / currentGoals.water) * 100, 100);
+
+            document.getElementById('todayWater').textContent = todayWater + ' ml';
+            document.getElementById('remainingWater').textContent = 
+                remainingWater > 0 ? `${remainingWater} ml remaining` : `${Math.abs(remainingWater)} ml over goal`;
+            document.getElementById('remainingWater').style.color = remainingWater > 0 ? '#28a745' : '#dc3545';
+            document.getElementById('waterProgress').style.width = waterPercentage + '%';
+
+            document.getElementById('todayWeight').textContent = dailyData[todayKey].weight ? dailyData[todayKey].weight + ' kg' : '-';
+
             document.getElementById('foodsLogged').textContent = dailyData[todayKey].meals.length;
 
-            // Calculate weekly average
+            // Weekly average calories and weight
             const last7Days = Array.from({length: 7}, (_, i) => {
                 const date = new Date();
                 date.setDate(date.getDate() - i);
                 return date.toISOString().split('T')[0];
             });
 
-            const weeklyTotal = last7Days.reduce((sum, date) => {
-                return sum + (dailyData[date]?.totalCalories || 0);
-            }, 0);
+            const weeklyCalTotal = last7Days.reduce((sum, date) => sum + (dailyData[date]?.totalCalories || 0), 0);
+            document.getElementById('weeklyAverage').textContent = Math.round(weeklyCalTotal / 7);
 
-            document.getElementById('weeklyAverage').textContent = Math.round(weeklyTotal / 7);
+            const weeklyWeights = last7Days.map(date => dailyData[date]?.weight || 0).filter(w => w > 0);
+            const weeklyWeightAvg = weeklyWeights.length > 0 ? (weeklyWeights.reduce((sum, w) => sum + w, 0) / weeklyWeights.length).toFixed(1) : '-';
+            document.getElementById('weeklyWeightAvg').textContent = weeklyWeightAvg;
 
-            // Calculate streak
+            // Streak
             let streak = 0;
             let currentDate = new Date();
             while (true) {
@@ -699,7 +1122,7 @@ const foodDatabase = [
                 <div class="meal-item">
                     <div class="meal-info">
                         <h4>${meal.name}</h4>
-                        <p>${meal.quantity} ${meal.unit} • Added at ${meal.time}</p>
+                        <p>${meal.quantity} ${meal.unit} • P:${meal.protein}g C:${meal.carbs}g F:${meal.fat}g • Added at ${meal.time}</p>
                     </div>
                     <div style="display: flex; align-items: center; gap: 15px;">
                         <div class="meal-calories">${meal.calories} cal</div>
@@ -709,8 +1132,7 @@ const foodDatabase = [
             `).join('');
         }
 
-        function updateWeeklyChart() {
-            const chartContainer = document.getElementById('weeklyChart');
+        function updateWeeklyCharts() {
             const last7Days = Array.from({length: 7}, (_, i) => {
                 const date = new Date();
                 date.setDate(date.getDate() - i);
@@ -720,9 +1142,11 @@ const foodDatabase = [
                 };
             }).reverse();
 
-            const maxCalories = Math.max(userGoals.calories, Math.max(...last7Days.map(day => dailyData[day.date]?.totalCalories || 0)));
+            // Calorie bar chart
+            const calorieChart = document.getElementById('weeklyCalorieChart');
+            const maxCalories = Math.max(userGoals.lightCalories + userGoals.heavyCalorieAdjust, ...last7Days.map(day => dailyData[day.date]?.totalCalories || 0));
 
-            chartContainer.innerHTML = last7Days.map(day => {
+            calorieChart.innerHTML = last7Days.map(day => {
                 const calories = dailyData[day.date]?.totalCalories || 0;
                 const percentage = (calories / maxCalories) * 100;
                 
@@ -736,35 +1160,80 @@ const foodDatabase = [
                     </div>
                 `;
             }).join('');
+
+            // Weight line chart using canvas
+            const ctx = document.getElementById('weightLineChart').getContext('2d');
+            const weights = last7Days.map(day => dailyData[day.date]?.weight || null);
+            const labels = last7Days.map(day => day.day);
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Weight (kg)',
+                        data: weights,
+                        borderColor: '#11998e',
+                        backgroundColor: 'rgba(17, 153, 142, 0.2)',
+                        fill: true,
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: false
+                        }
+                    }
+                }
+            });
         }
 
         function switchTab(tabName) {
-            // Remove active class from all tabs and contents
             document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
             
-            // Add active class to selected tab and content
             event.target.classList.add('active');
             document.getElementById(tabName).classList.add('active');
             
             if (tabName === 'goals') {
                 loadGoals();
             } else if (tabName === 'reports') {
-                updateWeeklyChart();
+                updateWeeklyCharts();
+            } else if (tabName === 'routine') {
+                updateTasksList();
             }
         }
 
         function loadGoals() {
-            document.getElementById('calorieGoal').value = userGoals.calories;
+            document.getElementById('lightCalorieGoal').value = userGoals.lightCalories;
+            document.getElementById('heavyCalorieAdjust').value = userGoals.heavyCalorieAdjust;
+            document.getElementById('lightProteinGoal').value = userGoals.lightProtein;
+            document.getElementById('heavyProteinGoal').value = userGoals.heavyProtein;
+            document.getElementById('carbsGoalInput').value = userGoals.carbs;
+            document.getElementById('fatGoalInput').value = userGoals.fat;
+            document.getElementById('waterGoal').value = userGoals.water;
             document.getElementById('activityLevel').value = userGoals.activity;
             document.getElementById('weightGoal').value = userGoals.weight;
+
+            ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'].forEach(day => {
+                document.getElementById(day).checked = userGoals.trainingDays.includes(day);
+            });
         }
 
         function saveGoals() {
             userGoals = {
-                calories: parseInt(document.getElementById('calorieGoal').value),
+                lightCalories: parseInt(document.getElementById('lightCalorieGoal').value),
+                heavyCalorieAdjust: parseInt(document.getElementById('heavyCalorieAdjust').value),
+                lightProtein: parseInt(document.getElementById('lightProteinGoal').value),
+                heavyProtein: parseInt(document.getElementById('heavyProteinGoal').value),
+                carbs: parseInt(document.getElementById('carbsGoalInput').value),
+                fat: parseInt(document.getElementById('fatGoalInput').value),
+                water: parseInt(document.getElementById('waterGoal').value),
                 activity: document.getElementById('activityLevel').value,
-                weight: document.getElementById('weightGoal').value
+                weight: document.getElementById('weightGoal').value,
+                trainingDays: ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'].filter(day => document.getElementById(day).checked)
             };
             
             saveData();
@@ -773,8 +1242,8 @@ const foodDatabase = [
         }
 
         function clearToday() {
-            if (confirm('Are you sure you want to clear all meals for today?')) {
-                dailyData[todayKey] = {meals: [], totalCalories: 0};
+            if (confirm('Are you sure you want to clear all meals, water, and weight for today?')) {
+                dailyData[todayKey] = {meals: [], water: 0, weight: null, totalCalories: 0, totalProtein: 0, totalCarbs: 0, totalFat: 0};
                 saveData();
                 updateDisplay();
                 showNotification('Today\'s log cleared', 'success');
@@ -785,6 +1254,7 @@ const foodDatabase = [
             const exportData = {
                 goals: userGoals,
                 data: dailyData,
+                tasks: tasks,
                 exportDate: new Date().toISOString()
             };
             
@@ -802,6 +1272,27 @@ const foodDatabase = [
             showNotification('Data exported successfully!', 'success');
         }
 
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const imported = JSON.parse(e.target.result);
+                    userGoals = imported.goals;
+                    dailyData = imported.data;
+                    tasks = imported.tasks || [];
+                    saveData();
+                    updateDisplay();
+                    showNotification('Data imported successfully!', 'success');
+                } catch (err) {
+                    showNotification('Error importing data. Invalid file.', 'error');
+                }
+            };
+            reader.readAsText(file);
+        }
+
         function showNotification(message, type) {
             const notification = document.createElement('div');
             notification.className = `notification ${type}`;
@@ -813,29 +1304,96 @@ const foodDatabase = [
             }, 3000);
         }
 
+        function showDailyMotivation() {
+            const todaySeed = new Date().getDate();
+            const quote = motivations[todaySeed % motivations.length];
+            document.getElementById('dailyMotivation').textContent = quote;
+        }
+
+        // Theme toggle function
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            const isDark = document.body.classList.contains('dark');
+            document.getElementById('themeToggle').textContent = isDark ? '☀️' : '🌙';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        // Daily routine tasks
+        function addTask() {
+            const taskText = document.getElementById('taskInput').value.trim();
+            if (!taskText) return;
+            tasks.push(taskText);
+            saveData();
+            updateTasksList();
+            showNotification(`Added task: ${taskText}`, 'success');
+            document.getElementById('taskInput').value = '';
+        }
+
+        function removeTask(index) {
+            const removedTask = tasks[index];
+            tasks.splice(index, 1);
+            saveData();
+            updateTasksList();
+            showNotification(`Removed task: ${removedTask}`, 'success');
+        }
+
+        function updateTasksList() {
+            const taskList = document.getElementById('taskList');
+            if (tasks.length === 0) {
+                taskList.innerHTML = '<p style="text-align: center; color: #666;">No tasks added yet.</p>';
+                return;
+            }
+            taskList.innerHTML = tasks.map((task, index) => `
+                <div class="task-item">
+                    <span>${task}</span>
+                    <button class="btn btn-danger" onclick="removeTask(${index})" style="padding: 5px 10px;">Remove</button>
+                </div>
+            `).join('');
+        }
+
         // Initialize the app
         document.addEventListener('DOMContentLoaded', function() {
+            showDailyMotivation();
             updateDisplay();
             
-            // Add enter key support for search
+            // Load theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark');
+                document.getElementById('themeToggle').textContent = '☀️';
+            }
+
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
+            // Enter key supports
             document.getElementById('foodSearch').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    searchFood();
+                if (e.key === 'Enter') searchFood();
+            });
+            document.getElementById('waterAmount').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') addWater();
+            });
+            document.getElementById('weightInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') logWeight();
+            });
+            document.getElementById('taskInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') addTask();
+            });
+
+            // Auto-search
+            document.getElementById('foodSearch').addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                if (query.length >= 2) {
+                    setTimeout(() => {
+                        if (this.value.toLowerCase().trim() === query) searchFood();
+                    }, 300);
                 }
             });
         });
 
-        // Auto-search as user types
-        document.getElementById('foodSearch').addEventListener('input', function() {
-            const query = this.value.toLowerCase().trim();
-            if (query.length >= 2) {
-                setTimeout(() => {
-                    if (this.value.toLowerCase().trim() === query) {
-                        searchFood();
-                    }
-                }, 300);
-            }
-        });
+        // Include Chart.js for line chart
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/chart.js';
+        document.head.appendChild(script);
     </script>
 </body>
 </html>
