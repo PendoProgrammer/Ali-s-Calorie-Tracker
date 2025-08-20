@@ -7,6 +7,8 @@
     <title>ALI'S Diet & Calories Tracker</title>
     <!-- Google Fonts for modern look -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -498,86 +500,68 @@
         }
 
         .notification {
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            font-size: 1.1em;
+            border: 2px solid #fff;
+            padding: 18px 30px;
+            border-radius: 15px;
+            background: linear-gradient(45deg, #11998e, #38ef7d);
+            color: #fff;
+            animation: fadeInDown 0.5s;
             position: fixed;
             top: 20px;
             right: 20px;
-            padding: 15px 25px;
-            border-radius: 10px;
-            color: white;
-            font-weight: bold;
             z-index: 1000;
-            animation: slideIn 0.3s ease;
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px);}
+            to { opacity: 1; transform: translateY(0);}
         }
 
-        .notification.success {
+        /* Add icons to stat cards */
+        .stat-card h3 i {
+            margin-right: 8px;
+        }
+
+        /* Motivation box footer */
+        .motivation-box {
             background: linear-gradient(45deg, #11998e, #38ef7d);
-        }
-
-        .notification.error {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-        }
-
-        @keyframes slideIn {
-            from { transform: translateX(100%); }
-            to { transform: translateX(0); }
-        }
-
-        .export-btn {
-            margin-top: 20px;
-            width: 100%;
-        }
-
-        .import-btn {
-            margin-top: 10px;
-            width: 100%;
-        }
-
-        #importFile {
-            display: none;
-        }
-
-        .tasks-section {
-            margin-top: 30px;
-        }
-
-        .task-item {
+            color: #fff;
+            padding: 20px 30px;
+            border-radius: 15px;
+            font-size: 1.3em;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 10px;
-            background: white;
-            border-radius: 8px;
-            margin-bottom: 10px;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            margin: 0 auto;
+            max-width: 600px;
         }
-
-        body.dark .task-item {
-            background: #333;
+        .motivation-box i {
+            font-size: 1.2em;
         }
-
         .footer {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-            font-size: 0.9em;
+            background: none;
+            border: none;
+            box-shadow: none;
+            padding: 30px 0 10px 0;
         }
 
-        body.dark .footer {
-            color: #ccc;
-        }
-
-        /* Additional responsive adjustments */
-        @media (max-width: 480px) {
-            .header h1 {
-                font-size: 2em;
+        /* Responsive tweaks */
+        @media (max-width: 600px) {
+            .container, .motivation-box {
+                padding: 10px;
             }
-
-            .stat-card {
-                padding: 15px;
+            .stat-card, .card {
+                padding: 10px;
             }
-
-            .btn {
-                padding: 10px 15px;
-                font-size: 14px;
+            .tabs .tab {
+                font-size: 0.9em;
+                padding: 10px;
+            }
+            .footer {
+                font-size: 1em;
             }
         }
     </style>
@@ -593,7 +577,7 @@
 
         <div class="stats-grid">
             <div class="stat-card">
-                <h3>Today's Calories</h3>
+                <h3><i class="fa-solid fa-fire"></i> Today's Calories</h3>
                 <div class="stat-value" id="todayCalories">0</div>
                 <div class="progress-bar">
                     <div class="progress-fill" id="calorieProgress"></div>
@@ -601,22 +585,22 @@
                 <div class="stat-remaining" id="remainingCalories">Goal: 2000</div>
             </div>
             <div class="stat-card">
-                <h3>Protein (g)</h3>
+                <h3><i class="fa-solid fa-drumstick-bite"></i> Protein (g)</h3>
                 <div class="stat-value" id="todayProtein">0</div>
                 <div class="stat-remaining" id="proteinGoal">Goal: 100g</div>
             </div>
             <div class="stat-card">
-                <h3>Carbs (g)</h3>
+                <h3><i class="fa-solid fa-bread-slice"></i> Carbs (g)</h3>
                 <div class="stat-value" id="todayCarbs">0</div>
                 <div class="stat-remaining" id="carbsGoal">Goal: 250g</div>
             </div>
             <div class="stat-card">
-                <h3>Fat (g)</h3>
+                <h3><i class="fa-solid fa-bacon"></i> Fat (g)</h3>
                 <div class="stat-value" id="todayFat">0</div>
                 <div class="stat-remaining" id="fatGoal">Goal: 70g</div>
             </div>
             <div class="stat-card">
-                <h3>Water Intake</h3>
+                <h3><i class="fa-solid fa-glass-water"></i> Water Intake</h3>
                 <div class="stat-value" id="todayWater">0 ml</div>
                 <div class="progress-bar">
                     <div class="progress-fill" id="waterProgress"></div>
@@ -624,27 +608,27 @@
                 <div class="stat-remaining" id="remainingWater">Goal: 3000 ml</div>
             </div>
             <div class="stat-card">
-                <h3>Current Weight</h3>
+                <h3><i class="fa-solid fa-weight-scale"></i> Current Weight</h3>
                 <div class="stat-value" id="todayWeight">-</div>
                 <p style="color: #666;">kg</p>
             </div>
             <div class="stat-card">
-                <h3>Weekly Average Cal</h3>
+                <h3><i class="fa-solid fa-fire-flame-curved"></i> Weekly Average Cal</h3>
                 <div class="stat-value" id="weeklyAverage">0</div>
                 <p style="color: #666;">Calories per day</p>
             </div>
             <div class="stat-card">
-                <h3>Weekly Avg Weight</h3>
+                <h3><i class="fa-solid fa-scale-balanced"></i> Weekly Avg Weight</h3>
                 <div class="stat-value" id="weeklyWeightAvg">-</div>
                 <p style="color: #666;">kg</p>
             </div>
             <div class="stat-card">
-                <h3>Foods Logged</h3>
+                <h3><i class="fa-solid fa-utensils"></i> Foods Logged</h3>
                 <div class="stat-value" id="foodsLogged">0</div>
                 <p style="color: #666;">Items today</p>
             </div>
             <div class="stat-card">
-                <h3>Streak</h3>
+                <h3><i class="fa-solid fa-bolt"></i> Streak</h3>
                 <div class="stat-value" id="currentStreak">0</div>
                 <p style="color: #666;">Days tracking</p>
             </div>
@@ -660,42 +644,41 @@
         <div class="tab-content active" id="tracker">
             <div class="main-content">
                 <div class="card">
-                    <h2>🔍 Add Food</h2>
+                    <h2><i class="fa-solid fa-magnifying-glass"></i> Add Food</h2>
                     <div class="search-container">
                         <input type="text" id="foodSearch" class="search-input" placeholder="Search for food (e.g., banana, chicken breast)">
-                        <button class="btn btn-primary" onclick="searchFood()">Search</button>
                     </div>
                     <div class="food-results" id="foodResults"></div>
 
-                    <h2>💧 Log Water</h2>
+                    <h2><i class="fa-solid fa-glass-water-droplet"></i> Log Water</h2>
                     <div class="search-container">
                         <input type="number" id="waterAmount" class="search-input" placeholder="Enter ml or glasses (1 glass = 250ml)" min="1">
-                        <button class="btn btn-primary" onclick="addWater()">Add Water</button>
+                        <button class="btn btn-primary" onclick="addWater()"><i class="fa-solid fa-plus"></i> Add Water</button>
                     </div>
 
-                    <h2>⚖️ Log Weight</h2>
+                    <h2><i class="fa-solid fa-weight-scale"></i> Log Weight</h2>
                     <div class="search-container">
                         <input type="number" id="weightInput" class="search-input" placeholder="Enter weight in kg" step="0.1" min="0">
-                        <button class="btn btn-primary" onclick="logWeight()">Log Weight</button>
+                        <button class="btn btn-primary" onclick="logWeight()"><i class="fa-solid fa-plus"></i> Log Weight</button>
                     </div>
                 </div>
 
                 <div class="card">
-                    <h2>📋 Today's Meals</h2>
+                    <h2><i class="fa-solid fa-utensils"></i> Today's Meals</h2>
                     <div class="today-meals" id="todayMeals">
                         <div style="text-align: center; color: #666; padding: 40px;">
                             <p>No meals logged today</p>
                             <p style="font-size: 0.9em;">Start by searching and adding foods!</p>
                         </div>
                     </div>
-                    <button class="btn btn-danger" onclick="clearToday()" style="width: 100%; margin-top: 15px;">Clear Today's Log</button>
+                    <button class="btn btn-danger" onclick="clearToday()" style="width: 100%; margin-top: 15px;"><i class="fa-solid fa-trash"></i> Clear Today's Log</button>
                 </div>
             </div>
         </div>
 
         <div class="tab-content" id="goals">
             <div class="goal-setting">
-                <h2>🎯 Set Your Goals</h2>
+                <h2><i class="fa-solid fa-bullseye"></i> Set Your Goals</h2>
                 <div class="form-group">
                     <label>Light Day Calorie Goal:</label>
                     <input type="number" id="lightCalorieGoal" value="2000" min="1000" max="5000">
@@ -754,28 +737,28 @@
                         <label><input type="checkbox" id="sun"> Sun</label>
                     </div>
                 </div>
-                <button class="btn btn-success" onclick="saveGoals()" style="width: 100%;">Save Goals</button>
+                <button class="btn btn-success" onclick="saveGoals()" style="width: 100%;"><i class="fa-solid fa-save"></i> Save Goals</button>
             </div>
         </div>
 
         <div class="tab-content" id="reports">
             <div class="card">
-                <h2>📊 Weekly Calorie Report</h2>
+                <h2><i class="fa-solid fa-chart-column"></i> Weekly Calorie Report</h2>
                 <div class="weekly-chart" id="weeklyCalorieChart"></div>
-                <h2>📊 Weekly Weight Progress</h2>
+                <h2><i class="fa-solid fa-chart-line"></i> Weekly Weight Progress</h2>
                 <canvas id="weightLineChart" width="400" height="200"></canvas>
-                <button class="btn btn-primary export-btn" onclick="exportData()">📁 Export Data</button>
-                <label for="importFile" class="btn btn-primary import-btn" style="cursor: pointer;">📂 Import Data</label>
+                <button class="btn btn-primary export-btn" onclick="exportData()"><i class="fa-solid fa-file-export"></i> Export Data</button>
+                <label for="importFile" class="btn btn-primary import-btn" style="cursor: pointer;"><i class="fa-solid fa-file-import"></i> Import Data</label>
                 <input type="file" id="importFile" accept=".json" onchange="importData(event)">
             </div>
         </div>
 
         <div class="tab-content" id="routine">
             <div class="card">
-                <h2>📅 Daily Routine Tasks</h2>
+                <h2><i class="fa-solid fa-list-check"></i> Daily Routine Tasks</h2>
                 <div class="search-container">
                     <input type="text" id="taskInput" class="search-input" placeholder="Enter new task (e.g., Gym workout)">
-                    <button class="btn btn-primary" onclick="addTask()">Add Task</button>
+                    <button class="btn btn-primary" onclick="addTask()"><i class="fa-solid fa-plus"></i> Add Task</button>
                 </div>
                 <div id="taskList"></div>
             </div>
@@ -783,7 +766,11 @@
     </div>
 
     <footer class="footer">
-        <p>Motivate yourself: "Consistency is key to success!"</p>
+        <div class="motivation-box">
+            <i class="fa-solid fa-quote-left"></i>
+            <span id="dailyMotivation"></span>
+            <i class="fa-solid fa-quote-right"></i>
+        </div>
     </footer>
 
     <script>
@@ -975,7 +962,7 @@
                     </div>
                     <div>
                         <input type="number" class="quantity-input" min="0.1" step="0.1" value="1" id="qty-${food.name.replace(/\s/g, '-')}">
-                        <button class="btn btn-success" onclick="addFood('${food.name}', ${food.calories}, ${food.protein}, ${food.carbs}, ${food.fat}, '${food.unit}')">Add</button>
+                        <button class="btn btn-success" onclick="addFood('${food.name}', ${food.calories}, ${food.protein}, ${food.carbs}, ${food.fat}, '${food.unit}')"><i class="fa-solid fa-plus"></i> Add</button>
                     </div>
                 </div>
             `).join('');
@@ -1161,24 +1148,34 @@
             calorieChart.innerHTML = last7Days.map(day => {
                 const calories = dailyData[day.date]?.totalCalories || 0;
                 const percentage = (calories / maxCalories) * 100;
-                
                 return `
                     <div class="chart-bar">
                         <div class="chart-label">${day.day}</div>
                         <div class="chart-bar-bg">
-                            <div class="chart-bar-fill" style="width: ${percentage}%"></div>
+                            <div class="chart-bar-fill" style="width: 0"></div>
                         </div>
                         <div class="chart-value">${calories}</div>
                     </div>
                 `;
             }).join('');
 
-            // Weight line chart using canvas
+            // Animate bars
+            setTimeout(() => {
+                document.querySelectorAll('.chart-bar-fill').forEach((bar, i) => {
+                    const calories = dailyData[last7Days[i].date]?.totalCalories || 0;
+                    const percentage = (calories / maxCalories) * 100;
+                    bar.style.transition = 'width 1.2s cubic-bezier(.68,-0.55,.27,1.55)';
+                    bar.style.width = percentage + '%';
+                });
+            }, 100);
+
+            // Weight line chart using Chart.js
             const ctx = document.getElementById('weightLineChart').getContext('2d');
             const weights = last7Days.map(day => dailyData[day.date]?.weight || null);
             const labels = last7Days.map(day => day.day);
 
-            new Chart(ctx, {
+            if (window.weightChart) window.weightChart.destroy();
+            window.weightChart = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: labels,
@@ -1186,17 +1183,24 @@
                         label: 'Weight (kg)',
                         data: weights,
                         borderColor: '#11998e',
-                        backgroundColor: 'rgba(17, 153, 142, 0.2)',
+                        backgroundColor: ctx.createLinearGradient(0, 0, 0, 200),
                         fill: true,
-                        tension: 0.1
+                        tension: 0.4,
+                        pointBackgroundColor: '#38ef7d',
+                        pointRadius: 6
                     }]
                 },
                 options: {
                     responsive: true,
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeOutBounce'
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    },
                     scales: {
-                        y: {
-                            beginAtZero: false
-                        }
+                        y: { beginAtZero: false }
                     }
                 }
             });
@@ -1305,29 +1309,137 @@
             reader.readAsText(file);
         }
 
+        // Notification improved (already styled above)
         function showNotification(message, type) {
             const notification = document.createElement('div');
             notification.className = `notification ${type}`;
             notification.textContent = message;
             document.body.appendChild(notification);
-            
             setTimeout(() => {
                 notification.remove();
             }, 3000);
         }
 
-        function showDailyMotivation() {
-            const todaySeed = new Date().getDate();
-            const quote = motivations[todaySeed % motivations.length];
-            document.getElementById('dailyMotivation').textContent = quote;
+        // Motivation box already styled in footer
+
+        // Live food search (instant results)
+        document.getElementById('foodSearch').addEventListener('input', function() {
+            searchFood();
+        });
+
+        // Update searchFood for instant results
+        function searchFood() {
+            const query = document.getElementById('foodSearch').value.toLowerCase().trim();
+            const results = document.getElementById('foodResults');
+            if (!query) {
+                results.innerHTML = '';
+                return;
+            }
+            const filteredFoods = foodDatabase.filter(food => food.name.toLowerCase().includes(query));
+            if (filteredFoods.length === 0) {
+                results.innerHTML = '<div style="text-align: center; color: #666; padding: 20px;">No foods found.</div>';
+                return;
+            }
+            results.innerHTML = filteredFoods.map(food => `
+                <div class="food-item">
+                    <div class="food-info">
+                        <h4>${food.name}</h4>
+                        <p>${food.calories} cal, P: ${food.protein}g, C: ${food.carbs}g, F: ${food.fat}g per ${food.unit}</p>
+                    </div>
+                    <div>
+                        <input type="number" class="quantity-input" min="0.1" step="0.1" value="1" id="qty-${food.name.replace(/\s/g, '-')}">
+                        <button class="btn btn-success" onclick="addFood('${food.name}', ${food.calories}, ${food.protein}, ${food.carbs}, ${food.fat}, '${food.unit}')"><i class="fa-solid fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            `).join('');
         }
 
-        // Theme toggle function
-        function toggleTheme() {
-            document.body.classList.toggle('dark');
-            const isDark = document.body.classList.contains('dark');
-            document.getElementById('themeToggle').textContent = isDark ? '☀️' : '🌙';
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        // Animated Chart.js for weight line chart
+        function updateWeeklyCharts() {
+            const last7Days = Array.from({length: 7}, (_, i) => {
+                const date = new Date();
+                date.setDate(date.getDate() - i);
+                return {
+                    date: date.toISOString().split('T')[0],
+                    day: date.toLocaleDateString('en-US', {weekday: 'short'})
+                };
+            }).reverse();
+
+            // Calorie bar chart
+            const calorieChart = document.getElementById('weeklyCalorieChart');
+            const maxCalories = Math.max(userGoals.lightCalories + userGoals.heavyCalorieAdjust, ...last7Days.map(day => dailyData[day.date]?.totalCalories || 0));
+
+            calorieChart.innerHTML = last7Days.map(day => {
+                const calories = dailyData[day.date]?.totalCalories || 0;
+                const percentage = (calories / maxCalories) * 100;
+                return `
+                    <div class="chart-bar">
+                        <div class="chart-label">${day.day}</div>
+                        <div class="chart-bar-bg">
+                            <div class="chart-bar-fill" style="width: 0"></div>
+                        </div>
+                        <div class="chart-value">${calories}</div>
+                    </div>
+                `;
+            }).join('');
+
+            // Animate bars
+            setTimeout(() => {
+                document.querySelectorAll('.chart-bar-fill').forEach((bar, i) => {
+                    const calories = dailyData[last7Days[i].date]?.totalCalories || 0;
+                    const percentage = (calories / maxCalories) * 100;
+                    bar.style.transition = 'width 1.2s cubic-bezier(.68,-0.55,.27,1.55)';
+                    bar.style.width = percentage + '%';
+                });
+            }, 100);
+
+            // Weight line chart using Chart.js
+            const ctx = document.getElementById('weightLineChart').getContext('2d');
+            const weights = last7Days.map(day => dailyData[day.date]?.weight || null);
+            const labels = last7Days.map(day => day.day);
+
+            if (window.weightChart) window.weightChart.destroy();
+            window.weightChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Weight (kg)',
+                        data: weights,
+                        borderColor: '#11998e',
+                        backgroundColor: ctx.createLinearGradient(0, 0, 0, 200),
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#38ef7d',
+                        pointRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeOutBounce'
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: { beginAtZero: false }
+                    }
+                }
+            });
+        }
+
+        // Sound functions (unchanged)
+        const taskAddSound = new Audio('TaskAdding.mp3');
+        const taskRemoveSound = new Audio('TaskRemoving.mp3');
+        function playTaskAddSound() {
+            taskAddSound.currentTime = 0;
+            taskAddSound.play();
+        }
+        function playTaskRemoveSound() {
+            taskRemoveSound.currentTime = 0;
+            taskRemoveSound.play();
         }
 
         // Daily routine tasks
@@ -1408,18 +1520,6 @@
         const script = document.createElement('script');
         script.src = 'https://cdn.jsdelivr.net/npm/chart.js';
         document.head.appendChild(script);
-
-        const taskAddSound = new Audio('TaskAdding.mp3');
-const taskRemoveSound = new Audio('TaskRemoving.mp3');
-
-function playTaskAddSound() {
-    taskAddSound.currentTime = 0;
-    taskAddSound.play();
-}
-function playTaskRemoveSound() {
-    taskRemoveSound.currentTime = 0;
-    taskRemoveSound.play();
-}
     </script>
 </body>
 </html>
