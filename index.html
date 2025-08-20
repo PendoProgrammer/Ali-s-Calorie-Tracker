@@ -651,10 +651,10 @@
         </div>
 
         <div class="tabs">
-            <div class="tab active" onclick="switchTab('tracker')">🍽️ Food Tracker</div>
-            <div class="tab" onclick="switchTab('goals')">🎯 Goals & Settings</div>
-            <div class="tab" onclick="switchTab('reports')">📊 Reports & History</div>
-            <div class="tab" onclick="switchTab('routine')">📅 Daily Routine</div>
+            <div class="tab active" onclick="switchTab('tracker', event)">🍽️ Food Tracker</div>
+            <div class="tab" onclick="switchTab('goals', event)">🎯 Goals & Settings</div>
+            <div class="tab" onclick="switchTab('reports', event)">📊 Reports & History</div>
+            <div class="tab" onclick="switchTab('routine', event)">📅 Daily Routine</div>
         </div>
 
         <div class="tab-content active" id="tracker">
@@ -1008,6 +1008,7 @@
             saveData();
             updateDisplay();
             showNotification(`Added ${quantity} ${unit} of ${name} (${totalCalories} cal)`, 'success');
+            playTaskAddSound();
         }
 
         function removeFood(index) {
@@ -1201,11 +1202,11 @@
             });
         }
 
-        function switchTab(tabName) {
+        function switchTab(tabName, event) {
             document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
             
-            event.target.classList.add('active');
+            if (event) event.target.classList.add('active');
             document.getElementById(tabName).classList.add('active');
             
             if (tabName === 'goals') {
@@ -1337,6 +1338,7 @@
             saveData();
             updateTasksList();
             showNotification(`Added task: ${taskText}`, 'success');
+            playTaskAddSound(); // Play sound
             document.getElementById('taskInput').value = '';
         }
 
@@ -1346,6 +1348,7 @@
             saveData();
             updateTasksList();
             showNotification(`Removed task: ${removedTask}`, 'success');
+            playTaskRemoveSound(); // Play sound
         }
 
         function updateTasksList() {
@@ -1405,6 +1408,18 @@
         const script = document.createElement('script');
         script.src = 'https://cdn.jsdelivr.net/npm/chart.js';
         document.head.appendChild(script);
+
+        const taskAddSound = new Audio('taskadding.mp3');
+const taskRemoveSound = new Audio('taskremoving.mp3');
+
+function playTaskAddSound() {
+    taskAddSound.currentTime = 0;
+    taskAddSound.play();
+}
+function playTaskRemoveSound() {
+    taskRemoveSound.currentTime = 0;
+    taskRemoveSound.play();
+}
     </script>
 </body>
 </html>
