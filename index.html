@@ -1575,6 +1575,12 @@
     const idx = today.getDate() % motivations.length;
     document.getElementById('dailyMotivation').textContent = motivations[idx] || "“Push yourself, because no one else is going to do it for you.”";
 }
+
+document.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+        playTaskAddSound();
+    });
+});
     </script>
 </body>
 </html>
