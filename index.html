@@ -1479,9 +1479,10 @@
     document.body.classList.toggle('dark');
     const isDark = document.body.classList.contains('dark');
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    document.getElementById('themeToggle').textContent = isDark ? '☀️' : '🌙';
-    document.getElementById('themeToggle').style.background = isDark ? 'linear-gradient(45deg, #38ef7d, #11998e)' : 'linear-gradient(45deg, #11998e, #38ef7d)';
-    document.getElementById('themeToggle').style.color = isDark ? '#fff' : '#333';
+    const themeToggleBtn = document.getElementById('themeToggle');
+    themeToggleBtn.textContent = isDark ? '☀️' : '🌙';
+    themeToggleBtn.style.background = isDark ? 'linear-gradient(45deg, #38ef7d, #11998e)' : 'linear-gradient(45deg, #11998e, #38ef7d)';
+    themeToggleBtn.style.color = isDark ? '#fff' : '#333';
 }
 
         // Sound functions (unchanged)
@@ -1535,15 +1536,22 @@
         document.addEventListener('DOMContentLoaded', function() {
             showDailyMotivation();
             updateDisplay();
-            
-            // Load theme
+
+            // Load theme and update button style
+            const themeToggleBtn = document.getElementById('themeToggle');
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.body.classList.add('dark');
-                document.getElementById('themeToggle').textContent = '☀️';
+                themeToggleBtn.textContent = '☀️';
+                themeToggleBtn.style.background = 'linear-gradient(45deg, #38ef7d, #11998e)';
+                themeToggleBtn.style.color = '#fff';
+            } else {
+                themeToggleBtn.textContent = '🌙';
+                themeToggleBtn.style.background = 'linear-gradient(45deg, #11998e, #38ef7d)';
+                themeToggleBtn.style.color = '#333';
             }
 
-            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            themeToggleBtn.addEventListener('click', toggleTheme);
 
             // Enter key supports
             document.getElementById('foodSearch').addEventListener('keypress', function(e) {
