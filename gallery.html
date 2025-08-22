@@ -28,7 +28,8 @@
             position: absolute;
             left: 32px;
             top: 32px;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
             padding: 10px 22px;
             background: linear-gradient(90deg, #11998e 0%, #38ef7d 100%);
             color: #fff;
@@ -41,9 +42,11 @@
             transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
             letter-spacing: 0.5px;
             z-index: 2;
+            min-width: 120px;
+            justify-content: center;
+            gap: 8px;
         }
         .back-home-btn i {
-            margin-right: 8px;
             font-size: 1.1em;
             vertical-align: middle;
         }
@@ -169,6 +172,17 @@
                 width: 48px;
                 height: 48px;
             }
+            .back-home-btn {
+        left: 50%;
+        top: 12px;
+        transform: translateX(-50%);
+        padding: 8px 18px;
+        font-size: 1em;
+        min-width: 0;
+        border-radius: 20px;
+        box-shadow: 0 2px 8px rgba(17,153,142,0.13);
+        gap: 6px;
+    }
         }
     </style>
 </head>
