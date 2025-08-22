@@ -84,13 +84,48 @@
             gap: 22px;
             margin-top: 32px;
         }
-        .gallery img {
-            width: 100%;
-            height: 190px;
-            object-fit: cover;
-            border-radius: 7px;
+        .gallery-item {
+            position: relative;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
             box-shadow: 0 2px 12px rgba(60,60,60,0.08);
-            border: 2px solid #4caf50;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 0;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            max-height: 320px;
+            object-fit: contain;
+            display: block;
+            transition: box-shadow 0.2s;
+            cursor: pointer;
+            background: #f3f7f4;
+        }
+        .gallery-item a {
+            display: block;
+            width: 100%;
+        }
+        .img-date {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(17,153,142,0.92);
+            color: #fff;
+            padding: 6px 14px 6px 10px;
+            border-radius: 18px;
+            font-size: 0.98em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            z-index: 2;
+            box-shadow: 0 2px 8px rgba(17,153,142,0.13);
+        }
+        .img-date i {
+            font-size: 1em;
         }
         .motivation {
             margin: 50px 0 15px;
@@ -118,8 +153,14 @@
                 padding: 8px 14px;
                 font-size: 0.95em;
             }
-            .gallery img {
-                height: 100px;
+            .gallery-item img {
+                max-height: 180px;
+            }
+            .img-date {
+                font-size: 0.85em;
+                padding: 4px 10px 4px 8px;
+                top: 6px;
+                left: 6px;
             }
             .top-section h1 {
                 font-size: 1.5em;
@@ -142,26 +183,186 @@
     </div>
     <div class="container">
         <div class="gallery">
-            <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=500&q=80" alt="Gym 1">
-            <img src="https://images.unsplash.com/photo-1558611848-73f7eb4001ab?auto=format&fit=crop&w=500&q=80" alt="Gym 2">
-            <img src="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" alt="Gym 3">
-            <img src="https://images.unsplash.com/photo-1546484959-f9a94a3fa1c6?auto=format&fit=crop&w=500&q=80" alt="Gym 4">
-            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=500&q=80" alt="Gym 5">
-            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=80" alt="Gym 6">
-            <img src="https://images.unsplash.com/photo-1517960413844-6c3be7bbb4a9?auto=format&fit=crop&w=500&q=80" alt="Gym 7">
-            <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=500&q=80" alt="Gym 8">
-            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=500&q=80" alt="Gym 9">
-            <img src="https://images.unsplash.com/photo-1516275466079-2c7b2b0c6c8a?auto=format&fit=crop&w=500&q=80" alt="Gym 10">
-            <img src="https://images.unsplash.com/photo-1526401485004-2b7ae3926fff?auto=format&fit=crop&w=500&q=80" alt="Gym 11">
-            <img src="https://images.unsplash.com/photo-1514512364185-4c2b6788d8a6?auto=format&fit=crop&w=500&q=80" alt="Gym 12">
-            <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=500&q=80" alt="Gym 13">
-            <img src="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" alt="Gym 14">
-            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=500&q=80" alt="Gym 15">
-            <img src="https://images.unsplash.com/photo-1517971071642-34a2d3dacff8?auto=format&fit=crop&w=500&q=80" alt="Gym 16">
-            <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=500&q=80" alt="Gym 17">
-            <img src="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" alt="Gym 18">
-            <img src="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" alt="Gym 19">
-            <img src="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" alt="Gym 20">
+            <div class="gallery-item">
+                <div class="img-date">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>22 Aug 2025</span>
+                </div>
+                <a href="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=500&q=80" target="_blank">
+                    <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=500&q=80" alt="Gym 1">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <div class="img-date">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>22 Aug 2025</span>
+                </div>
+                <a href="https://images.unsplash.com/photo-1558611848-73f7eb4001ab?auto=format&fit=crop&w=500&q=80" target="_blank">
+                    <img src="https://images.unsplash.com/photo-1558611848-73f7eb4001ab?auto=format&fit=crop&w=500&q=80" alt="Gym 2">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <div class="img-date">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>22 Aug 2025</span>
+                </div>
+                <a href="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" target="_blank">
+                    <img src="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" alt="Gym 3">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <div class="img-date">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>22 Aug 2025</span>
+                </div>
+                <a href="https://images.unsplash.com/photo-1546484959-f9a94a3fa1c6?auto=format&fit=crop&w=500&q=80" target="_blank">
+                    <img src="https://images.unsplash.com/photo-1546484959-f9a94a3fa1c6?auto=format&fit=crop&w=500&q=80" alt="Gym 4">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <div class="img-date">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>22 Aug 2025</span>
+                </div>
+                <a href="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=500&q=80" target="_blank">
+                    <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=500&q=80" alt="Gym 5">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <div class="img-date">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>22 Aug 2025</span>
+                </div>
+                <a href="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=80" target="_blank">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=80" alt="Gym 6">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <div class="img-date">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>22 Aug 2025</span>
+                </div>
+                <a href="https://images.unsplash.com/photo-1517960413844-6c3be7bbb4a9?auto=format&fit=crop&w=500&q=80" target="_blank">
+                    <img src="https://images.unsplash.com/photo-1517960413844-6c3be7bbb4a9?auto=format&fit=crop&w=500&q=80" alt="Gym 7">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <div class="img-date">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>22 Aug 2025</span>
+                </div>
+                <a href="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=500&q=80" target="_blank">
+                    <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=500&q=80" alt="Gym 8">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <div class="img-date">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>22 Aug 2025</span>
+                </div>
+                <a href="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=500&q=80" target="_blank">
+                    <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=500&q=80" alt="Gym 9">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <div class="img-date">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>22 Aug 2025</span>
+                </div>
+                <a href="https://images.unsplash.com/photo-1516275466079-2c7b2b0c6c8a?auto=format&fit=crop&w=500&q=80" target="_blank">
+                    <img src="https://images.unsplash.com/photo-1516275466079-2c7b2b0c6c8a?auto=format&fit=crop&w=500&q=80" alt="Gym 10">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <div class="img-date">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>22 Aug 2025</span>
+                </div>
+                <a href="https://images.unsplash.com/photo-1526401485004-2b7ae3926fff?auto=format&fit=crop&w=500&q=80" target="_blank">
+                    <img src="https://images.unsplash.com/photo-1526401485004-2b7ae3926fff?auto=format&fit=crop&w=500&q=80" alt="Gym 11">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <div class="img-date">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>22 Aug 2025</span>
+                </div>
+                <a href="https://images.unsplash.com/photo-1514512364185-4c2b6788d8a6?auto=format&fit=crop&w=500&q=80" target="_blank">
+                    <img src="https://images.unsplash.com/photo-1514512364185-4c2b6788d8a6?auto=format&fit=crop&w=500&q=80" alt="Gym 12">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <div class="img-date">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>22 Aug 2025</span>
+                </div>
+                <a href="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=500&q=80" target="_blank">
+                    <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=500&q=80" alt="Gym 13">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <div class="img-date">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>22 Aug 2025</span>
+                </div>
+                <a href="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" target="_blank">
+                    <img src="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" alt="Gym 14">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <div class="img-date">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>22 Aug 2025</span>
+                </div>
+                <a href="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=500&q=80" target="_blank">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=500&q=80" alt="Gym 15">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <div class="img-date">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>22 Aug 2025</span>
+                </div>
+                <a href="https://images.unsplash.com/photo-1517971071642-34a2d3dacff8?auto=format&fit=crop&w=500&q=80" target="_blank">
+                    <img src="https://images.unsplash.com/photo-1517971071642-34a2d3dacff8?auto=format&fit=crop&w=500&q=80" alt="Gym 16">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <div class="img-date">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>22 Aug 2025</span>
+                </div>
+                <a href="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=500&q=80" target="_blank">
+                    <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=500&q=80" alt="Gym 17">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <div class="img-date">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>22 Aug 2025</span>
+                </div>
+                <a href="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" target="_blank">
+                    <img src="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" alt="Gym 18">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <div class="img-date">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>22 Aug 2025</span>
+                </div>
+                <a href="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" target="_blank">
+                    <img src="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" alt="Gym 19">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <div class="img-date">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>22 Aug 2025</span>
+                </div>
+                <a href="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" target="_blank">
+                    <img src="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" alt="Gym 20">
+                </a>
+            </div>
         </div>
         <div class="motivation">
             <strong>“Push yourself, because no one else is going to do it for you.”</strong><br>
