@@ -80,6 +80,23 @@
             max-width: 1100px;
             margin: 0 auto 16px auto;
             padding: 0 12px;
+            background: url('https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            border-radius: 24px;
+            box-shadow: 0 4px 24px rgba(17,153,142,0.08);
+            /* Add a semi-transparent overlay for readability */
+            position: relative;
+        }
+        .container::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0.85);
+            border-radius: 24px;
+            z-index: 0;
+        }
+        .gallery, .motivation {
+            position: relative;
+            z-index: 1;
         }
         .gallery {
             display: grid;
@@ -189,29 +206,35 @@
             font-size: 1.3em;
             color: #fff;
             background: linear-gradient(90deg, #11998e 0%, #38ef7d 100%);
-            padding: 22px 18px;
-            border-radius: 16px;
-            box-shadow: 0 4px 18px rgba(17,153,142,0.10);
+            padding: 32px 18px 28px 18px;
+            border-radius: 20px;
+            box-shadow: 0 4px 18px rgba(17,153,142,0.13);
             font-family: 'Segoe UI Semibold', Arial, sans-serif;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
             letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
         }
         .motivation strong {
             display: block;
-            font-size: 1.15em;
+            font-size: 1.18em;
             margin-bottom: 8px;
             color: #fff;
+            font-weight: 600;
         }
-        .motivation br {
-            display: none;
+        .motivation i.fa-dumbbell {
+            display: block;
+            margin-bottom: 10px;
+            color: #fff;
+            filter: drop-shadow(0 2px 8px #11998e88);
         }
         @media (max-width: 600px) {
             .motivation {
                 font-size: 1em;
-                padding: 14px 8px;
-                border-radius: 10px;
+                padding: 18px 8px 14px 8px;
+                border-radius: 12px;
             }
             .motivation strong {
                 font-size: 1em;
@@ -224,15 +247,15 @@
         <a href="index.html" class="back-home-btn">
             <i class="fa-solid fa-arrow-left"></i> Back to Home
         </a>
-        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=500&q=80" alt="Gym Logo">
+        <img src="July 22 2025.jpg" alt="Gym Logo">
         <h1>Ali's Gym Gallery</h1>
         <p>Showcase your best gym moments & get inspired for your next workout!</p>
     </div>
     <div class="container">
         <div class="gallery">
             <div class="gallery-item">
-                <a href="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=500&q=80" target="_blank">
-                    <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=500&q=80" alt="Gym 1">
+                <a href="July 22 2025.jpg" target="_blank">
+                    <img src="July 22 2025.jpg" alt="Gym 1">
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
                         <span class="date-text">22 Aug 2025</span>
@@ -240,8 +263,8 @@
                 </a>
             </div>
             <div class="gallery-item">
-                <a href="https://images.unsplash.com/photo-1558611848-73f7eb4001ab?auto=format&fit=crop&w=500&q=80" target="_blank">
-                    <img src="https://images.unsplash.com/photo-1558611848-73f7eb4001ab?auto=format&fit=crop&w=500&q=80" alt="Gym 2">
+                <a href="AUg 21 2025.jpg" target="_blank">
+                    <img src="AUg 21 2025.jpg" alt="Gym 2">
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
                         <span class="date-text">22 Aug 2025</span>
@@ -249,8 +272,8 @@
                 </a>
             </div>
             <div class="gallery-item">
-                <a href="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" target="_blank">
-                    <img src="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" alt="Gym 3">
+                <a href="June 29 2025.jpg" target="_blank">
+                    <img src="June 29 2025.jpg" alt="Gym 3">
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
                         <span class="date-text">22 Aug 2025</span>
@@ -258,8 +281,8 @@
                 </a>
             </div>
             <div class="gallery-item">
-                <a href="https://images.unsplash.com/photo-1546484959-f9a94a3fa1c6?auto=format&fit=crop&w=500&q=80" target="_blank">
-                    <img src="https://images.unsplash.com/photo-1546484959-f9a94a3fa1c6?auto=format&fit=crop&w=500&q=80" alt="Gym 4">
+                <a href="July22 2025 (1).jpg" target="_blank">
+                    <img src="July22 2025 (1).jpg" alt="Gym 4">
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
                         <span class="date-text">22 Aug 2025</span>
@@ -267,8 +290,8 @@
                 </a>
             </div>
             <div class="gallery-item">
-                <a href="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=500&q=80" target="_blank">
-                    <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=500&q=80" alt="Gym 5">
+                <a href="July22 2025 (2).jpg" target="_blank">
+                    <img src="July22 2025 (2).jpg" alt="Gym 5">
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
                         <span class="date-text">22 Aug 2025</span>
@@ -276,8 +299,8 @@
                 </a>
             </div>
             <div class="gallery-item">
-                <a href="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=80" target="_blank">
-                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=80" alt="Gym 6">
+                <a href="July22 2025 (3).jpg" target="_blank">
+                    <img src="July22 2025 (3).jpg" alt="Gym 6">
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
                         <span class="date-text">22 Aug 2025</span>
@@ -285,135 +308,21 @@
                 </a>
             </div>
             <div class="gallery-item">
-                <a href="https://images.unsplash.com/photo-1517960413844-6c3be7bbb4a9?auto=format&fit=crop&w=500&q=80" target="_blank">
-                    <img src="https://images.unsplash.com/photo-1517960413844-6c3be7bbb4a9?auto=format&fit=crop&w=500&q=80" alt="Gym 7">
+                <a href="body.jpg" target="_blank">
+                    <img src="body.jpg" alt="Gym 7">
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
                         <span class="date-text">22 Aug 2025</span>
                     </div>
                 </a>
             </div>
-            <div class="gallery-item">
-                <a href="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=500&q=80" target="_blank">
-                    <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=500&q=80" alt="Gym 8">
-                    <div class="img-date">
-                        <i class="fa-regular fa-calendar"></i>
-                        <span class="date-text">22 Aug 2025</span>
-                    </div>
-                </a>
-            </div>
-            <div class="gallery-item">
-                <a href="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=500&q=80" target="_blank">
-                    <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=500&q=80" alt="Gym 9">
-                    <div class="img-date">
-                        <i class="fa-regular fa-calendar"></i>
-                        <span class="date-text">22 Aug 2025</span>
-                    </div>
-                </a>
-            </div>
-            <div class="gallery-item">
-                <a href="https://images.unsplash.com/photo-1516275466079-2c7b2b0c6c8a?auto=format&fit=crop&w=500&q=80" target="_blank">
-                    <img src="https://images.unsplash.com/photo-1516275466079-2c7b2b0c6c8a?auto=format&fit=crop&w=500&q=80" alt="Gym 10">
-                    <div class="img-date">
-                        <i class="fa-regular fa-calendar"></i>
-                        <span class="date-text">22 Aug 2025</span>
-                    </div>
-                </a>
-            </div>
-            <div class="gallery-item">
-                <a href="https://images.unsplash.com/photo-1526401485004-2b7ae3926fff?auto=format&fit=crop&w=500&q=80" target="_blank">
-                    <img src="https://images.unsplash.com/photo-1526401485004-2b7ae3926fff?auto=format&fit=crop&w=500&q=80" alt="Gym 11">
-                    <div class="img-date">
-                        <i class="fa-regular fa-calendar"></i>
-                        <span class="date-text">22 Aug 2025</span>
-                    </div>
-                </a>
-            </div>
-            <div class="gallery-item">
-                <a href="https://images.unsplash.com/photo-1514512364185-4c2b6788d8a6?auto=format&fit=crop&w=500&q=80" target="_blank">
-                    <img src="https://images.unsplash.com/photo-1514512364185-4c2b6788d8a6?auto=format&fit=crop&w=500&q=80" alt="Gym 12">
-                    <div class="img-date">
-                        <i class="fa-regular fa-calendar"></i>
-                        <span class="date-text">22 Aug 2025</span>
-                    </div>
-                </a>
-            </div>
-            <div class="gallery-item">
-                <a href="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=500&q=80" target="_blank">
-                    <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=500&q=80" alt="Gym 13">
-                    <div class="img-date">
-                        <i class="fa-regular fa-calendar"></i>
-                        <span class="date-text">22 Aug 2025</span>
-                    </div>
-                </a>
-            </div>
-            <div class="gallery-item">
-                <a href="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" target="_blank">
-                    <img src="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" alt="Gym 14">
-                    <div class="img-date">
-                        <i class="fa-regular fa-calendar"></i>
-                        <span class="date-text">22 Aug 2025</span>
-                    </div>
-                </a>
-            </div>
-            <div class="gallery-item">
-                <a href="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=500&q=80" target="_blank">
-                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=500&q=80" alt="Gym 15">
-                    <div class="img-date">
-                        <i class="fa-regular fa-calendar"></i>
-                        <span class="date-text">22 Aug 2025</span>
-                    </div>
-                </a>
-            </div>
-            <div class="gallery-item">
-                <a href="https://images.unsplash.com/photo-1517971071642-34a2d3dacff8?auto=format&fit=crop&w=500&q=80" target="_blank">
-                    <img src="https://images.unsplash.com/photo-1517971071642-34a2d3dacff8?auto=format&fit=crop&w=500&q=80" alt="Gym 16">
-                    <div class="img-date">
-                        <i class="fa-regular fa-calendar"></i>
-                        <span class="date-text">22 Aug 2025</span>
-                    </div>
-                </a>
-            </div>
-            <div class="gallery-item">
-                <a href="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=500&q=80" target="_blank">
-                    <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=500&q=80" alt="Gym 17">
-                    <div class="img-date">
-                        <i class="fa-regular fa-calendar"></i>
-                        <span class="date-text">22 Aug 2025</span>
-                    </div>
-                </a>
-            </div>
-            <div class="gallery-item">
-                <a href="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" target="_blank">
-                    <img src="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" alt="Gym 18">
-                    <div class="img-date">
-                        <i class="fa-regular fa-calendar"></i>
-                        <span>22 Aug 2025</span>
-                    </div>22 Aug 2025</span>
-                </a>
-            </div>
-            <div class="gallery-item">
-                <a href="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" target="_blank">
-                    <img src="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" alt="Gym 19">
-                    <div class="img-date">
-                        <i class="fa-regular fa-calendar"></i>
-                        <span>22 Aug 2025</span>
-                    </div>22 Aug 2025</span>
-                </a>
-            </div>
-            <div class="gallery-item">
-                <a href="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" target="_blank">
-                    <img src="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" alt="Gym 20">
-                    <div class="img-date">
-                        <i class="fa-regular fa-calendar"></i>
-                        <span>22 Aug 2025</span>
-                    </div>22 Aug 2025</span>
-                </a>
-            </div>
-        </div>
+           </div>
         <div class="motivation">
-            <strong>“Push yourself, because no one else is going to do it for you.”</strong><br>
-            — Stay motivated, every rep counts!
+            <i class="fa-solid fa-dumbbell" style="font-size:2em; margin-bottom:10px; color:#fff;"></i>
+            <strong>“Push yourself, because no one else is going to do it for you.”</strong>
+            <div style="margin-top:8px; font-size:1em; color:#e0ffe0;">
+        — Stay motivated, every rep counts!
+    </div>
         </div>
     </div>
 </body>
