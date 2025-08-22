@@ -129,19 +129,18 @@
             box-shadow: 0 2px 8px rgba(17,153,142,0.13);
             opacity: 0.95;
         }
-        .img-date i {
-            font-size: 1em;
+        .img-date .date-text {
+            display: none;
+            transition: opacity 0.2s;
         }
-        .motivation {
-            margin: 50px 0 15px;
-            text-align: center;
-            font-size: 1.3em;
-            color: #2e7d32;
-            background: #e8f5e9;
-            padding: 18px 16px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(76,175,80,0.06);
-            font-family: 'Segoe UI Semibold', Arial, sans-serif;
+        .gallery-item:hover .img-date .date-text,
+        .gallery-item:focus-within .img-date .date-text {
+            display: inline;
+            opacity: 1;
+        }
+        .gallery-item:hover .img-date i,
+        .gallery-item:focus-within .img-date i {
+            color: #fff;
         }
         @media (max-width: 900px) {
             .container {
@@ -202,7 +201,7 @@
                     <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=500&q=80" alt="Gym 1">
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
-                        <span>22 Aug 2025</span>
+                        <span class="date-text">22 Aug 2025</span>
                     </div>
                 </a>
             </div>
@@ -211,7 +210,7 @@
                     <img src="https://images.unsplash.com/photo-1558611848-73f7eb4001ab?auto=format&fit=crop&w=500&q=80" alt="Gym 2">
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
-                        <span>22 Aug 2025</span>
+                        <span class="date-text">22 Aug 2025</span>
                     </div>
                 </a>
             </div>
@@ -220,7 +219,7 @@
                     <img src="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" alt="Gym 3">
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
-                        <span>22 Aug 2025</span>
+                        <span class="date-text">22 Aug 2025</span>
                     </div>
                 </a>
             </div>
@@ -229,7 +228,7 @@
                     <img src="https://images.unsplash.com/photo-1546484959-f9a94a3fa1c6?auto=format&fit=crop&w=500&q=80" alt="Gym 4">
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
-                        <span>22 Aug 2025</span>
+                        <span class="date-text">22 Aug 2025</span>
                     </div>
                 </a>
             </div>
@@ -238,7 +237,7 @@
                     <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=500&q=80" alt="Gym 5">
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
-                        <span>22 Aug 2025</span>
+                        <span class="date-text">22 Aug 2025</span>
                     </div>
                 </a>
             </div>
@@ -247,7 +246,7 @@
                     <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=80" alt="Gym 6">
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
-                        <span>22 Aug 2025</span>
+                        <span class="date-text">22 Aug 2025</span>
                     </div>
                 </a>
             </div>
@@ -256,7 +255,7 @@
                     <img src="https://images.unsplash.com/photo-1517960413844-6c3be7bbb4a9?auto=format&fit=crop&w=500&q=80" alt="Gym 7">
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
-                        <span>22 Aug 2025</span>
+                        <span class="date-text">22 Aug 2025</span>
                     </div>
                 </a>
             </div>
@@ -265,7 +264,7 @@
                     <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=500&q=80" alt="Gym 8">
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
-                        <span>22 Aug 2025</span>
+                        <span class="date-text">22 Aug 2025</span>
                     </div>
                 </a>
             </div>
@@ -274,7 +273,7 @@
                     <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=500&q=80" alt="Gym 9">
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
-                        <span>22 Aug 2025</span>
+                        <span class="date-text">22 Aug 2025</span>
                     </div>
                 </a>
             </div>
@@ -283,7 +282,7 @@
                     <img src="https://images.unsplash.com/photo-1516275466079-2c7b2b0c6c8a?auto=format&fit=crop&w=500&q=80" alt="Gym 10">
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
-                        <span>22 Aug 2025</span>
+                        <span class="date-text">22 Aug 2025</span>
                     </div>
                 </a>
             </div>
@@ -292,7 +291,7 @@
                     <img src="https://images.unsplash.com/photo-1526401485004-2b7ae3926fff?auto=format&fit=crop&w=500&q=80" alt="Gym 11">
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
-                        <span>22 Aug 2025</span>
+                        <span class="date-text">22 Aug 2025</span>
                     </div>
                 </a>
             </div>
@@ -301,7 +300,7 @@
                     <img src="https://images.unsplash.com/photo-1514512364185-4c2b6788d8a6?auto=format&fit=crop&w=500&q=80" alt="Gym 12">
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
-                        <span>22 Aug 2025</span>
+                        <span class="date-text">22 Aug 2025</span>
                     </div>
                 </a>
             </div>
@@ -310,7 +309,7 @@
                     <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=500&q=80" alt="Gym 13">
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
-                        <span>22 Aug 2025</span>
+                        <span class="date-text">22 Aug 2025</span>
                     </div>
                 </a>
             </div>
@@ -319,7 +318,7 @@
                     <img src="https://images.unsplash.com/photo-1519864600265-abb224b6c2e3?auto=format&fit=crop&w=500&q=80" alt="Gym 14">
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
-                        <span>22 Aug 2025</span>
+                        <span class="date-text">22 Aug 2025</span>
                     </div>
                 </a>
             </div>
@@ -328,7 +327,7 @@
                     <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=500&q=80" alt="Gym 15">
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
-                        <span>22 Aug 2025</span>
+                        <span class="date-text">22 Aug 2025</span>
                     </div>
                 </a>
             </div>
@@ -337,7 +336,7 @@
                     <img src="https://images.unsplash.com/photo-1517971071642-34a2d3dacff8?auto=format&fit=crop&w=500&q=80" alt="Gym 16">
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
-                        <span>22 Aug 2025</span>
+                        <span class="date-text">22 Aug 2025</span>
                     </div>
                 </a>
             </div>
@@ -346,7 +345,7 @@
                     <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=500&q=80" alt="Gym 17">
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
-                        <span>22 Aug 2025</span>
+                        <span class="date-text">22 Aug 2025</span>
                     </div>
                 </a>
             </div>
@@ -356,7 +355,7 @@
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
                         <span>22 Aug 2025</span>
-                    </div>
+                    </div>22 Aug 2025</span>
                 </a>
             </div>
             <div class="gallery-item">
@@ -365,7 +364,7 @@
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
                         <span>22 Aug 2025</span>
-                    </div>
+                    </div>22 Aug 2025</span>
                 </a>
             </div>
             <div class="gallery-item">
@@ -374,7 +373,7 @@
                     <div class="img-date">
                         <i class="fa-regular fa-calendar"></i>
                         <span>22 Aug 2025</span>
-                    </div>
+                    </div>22 Aug 2025</span>
                 </a>
             </div>
         </div>
